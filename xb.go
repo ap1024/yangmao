@@ -11,7 +11,7 @@ import (
 	"github.com/beego/beego/v2/adapter/httplib"
 	"github.com/cdle/sillyGirl/core"
 )
-
+var yangmao = core.NewBucket("yangmao")
 type XB struct {
 	Data struct {
 		Type         string   `json:"type"`
@@ -36,7 +36,7 @@ func init() {
 			Handle: func(s core.Sender) interface{} {
 				msg:=getXb()
 				if push, ok := core.GroupPushs["qq"]; ok {
-					push(263723430, nil, msg, "")
+					push(core.Int64(yangmao.Get("group")), nil, msg, "")
 				}
 				return msg
 			},

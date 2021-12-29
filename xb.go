@@ -32,12 +32,8 @@ type XB struct {
 func init() {
 	core.AddCommand("", []core.Function{
 		{ 	Rules: []string{"raw ^羊毛$"},
-			Cron:  "30 8-18 * * *",
 			Handle: func(s core.Sender) interface{} {
 				msg:=getXb()
-				if push, ok := core.GroupPushs["qq"]; ok {
-					push(core.Int64(yangmao.Get("group")), nil, msg, "")
-				}
 				return msg
 			},
 		},
